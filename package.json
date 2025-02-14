@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio --port 5555 --verbose"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.0.0",
@@ -37,15 +39,20 @@
     "@radix-ui/react-toggle": "^1.1.2",
     "@radix-ui/react-toggle-group": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
+    "better-auth": "^1.1.17",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
     "date-fns": "^4.1.0",
+    "drizzle-orm": "0.39.0",
+    "drizzle-zod": "^0.7.0",
     "embla-carousel-react": "^8.5.2",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.475.0",
     "next": "15.1.6",
     "next-themes": "^0.4.4",
+    "nextjs-toploader": "^3.7.15",
+    "postgres": "^3.4.5",
     "react": "^19.0.0",
     "react-day-picker": "8.10.1",
     "react-dom": "^19.0.0",
@@ -59,14 +66,15 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "drizzle-kit": "0.30.0",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
-    "@eslint/eslintrc": "^3"
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }

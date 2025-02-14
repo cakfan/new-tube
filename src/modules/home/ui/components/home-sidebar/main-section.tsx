@@ -9,6 +9,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const items = [
   {
@@ -30,6 +32,9 @@ const items = [
 ];
 
 export const MainSection = () => {
+  const { data } = useSession();
+  const router = useRouter();
+
   return (
     <SidebarGroup>
       <SidebarGroupContent>
@@ -40,7 +45,14 @@ export const MainSection = () => {
                 tooltip={item.title}
                 asChild
                 isActive={false}
-                onClick={() => {}}
+                onClick={(e) => {
+                  if (!data?.session && item.auth) {
+                    e.preventDefault();
+                    router.push(
+                      `signin?redirect=${encodeURIComponent(item.url)}`
+                    );
+                  }
+                }}
               >
                 <Link href={item.url} className="flex items-center gap-4">
                   <item.icon />
