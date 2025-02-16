@@ -12,7 +12,11 @@ export const getMe = async (): Promise<UserType | null | undefined> => {
     return null;
   }
 
-  return await db.query.user.findFirst({
-    where: eq(user.username, session.user.username!),
-  });
+  const [data] = await db
+    .select()
+    .from(user)
+    .where(eq(user.id, session.user.id))
+    .limit(1);
+
+  return data;
 };

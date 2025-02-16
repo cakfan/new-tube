@@ -1,8 +1,11 @@
+import dotenv from "dotenv";
 import { defineConfig } from "drizzle-kit";
+
+dotenv.config({ path: ".evn.local" });
 
 export default defineConfig({
   schema: "./src/db/schema/index.ts",
-  out: "./src/db",
+  out: "./drizzle",
   dialect: "postgresql",
   schemaFilter: ["public", "newtube"],
   dbCredentials: {

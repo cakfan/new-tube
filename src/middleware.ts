@@ -4,6 +4,7 @@ import { betterFetch } from "@better-fetch/fetch";
 
 import {
   apiAuthPrefix,
+  apiTRPCPrefix,
   authRoutes,
   DEFAULT_LOGIN_REDIRECT,
   publicRoutes,
@@ -23,13 +24,15 @@ export async function middleware(request: NextRequest) {
 
   const isApiAuth = request.nextUrl.pathname.startsWith(apiAuthPrefix);
 
+  const isApiTRCP = request.nextUrl.pathname.startsWith(apiTRPCPrefix);
+
   const isPublicRoute = publicRoutes.includes(request.nextUrl.pathname);
 
   const isAuthRoute = () => {
     return authRoutes.some((path) => request.nextUrl.pathname.startsWith(path));
   };
 
-  if (isApiAuth) {
+  if (isApiAuth || isApiTRCP) {
     return NextResponse.next();
   }
 

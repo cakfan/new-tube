@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { UserCircleIcon } from "lucide-react";
-import { getMe } from "@/modules/auth/me";
+import { getMe } from "@/actions/user/me";
 import { UserMenu } from "./user-menu";
 import Link from "next/link";
 

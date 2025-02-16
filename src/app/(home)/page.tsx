@@ -1,6 +1,18 @@
-import { getMe } from "@/modules/auth/me";
+import { HydrateClient, trpc } from "@/trpc/server";
+import { ClientPage } from "./client";
+import { ErrorBoundary } from "react-error-boundary";
+import { Suspense } from "react";
 
 export default async function Home() {
-  const me = await getMe();
-  return <div>Hi, {me?.name}I will load videos in the future!</div>;
+  void trpc.hello.prefetch({ name: "Taufan Kuy" });
+  return (
+    <HydrateClient>
+      <ErrorBoundary fallback={<p>Error...</p>}>
+        <Suspense fallback={<p>Loading...</p>}>
+          <ClientPage />
+          <p>SKuy</p>
+        </Suspense>
+      </ErrorBoundary>
+    </HydrateClient>
+  );
 }
