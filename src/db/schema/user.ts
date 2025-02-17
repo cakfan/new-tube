@@ -1,5 +1,6 @@
 import { boolean, text, timestamp } from "drizzle-orm/pg-core";
-import { gender, role, newTubeSchema } from ".";
+import { gender, role, newTubeSchema, video } from ".";
+import { relations } from "drizzle-orm";
 
 export const user = newTubeSchema.table("user", {
   id: text("id").primaryKey(),
@@ -15,5 +16,9 @@ export const user = newTubeSchema.table("user", {
     .defaultNow()
     .$onUpdate(() => new Date()),
 });
+
+export const userRelations = relations(user, ({ many }) => ({
+  videos: many(video),
+}));
 
 export type UserType = typeof user.$inferSelect;

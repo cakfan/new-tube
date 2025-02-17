@@ -1,5 +1,7 @@
 import { text, timestamp, uniqueIndex, uuid } from "drizzle-orm/pg-core";
 import { newTubeSchema } from "./new-tube";
+import { relations } from "drizzle-orm";
+import { video } from "./video";
 
 export const category = newTubeSchema.table(
   "category",
@@ -14,3 +16,7 @@ export const category = newTubeSchema.table(
   },
   (t) => [uniqueIndex("name_idx").on(t.name)]
 );
+
+export const categoryRelations = relations(category, ({ many }) => ({
+  videos: many(video),
+}));

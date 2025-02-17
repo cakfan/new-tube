@@ -6,3 +6,4 @@ export * from "./account";
 export * from "./session";
 export * from "./verification";
 export * from "./category";
+export * from "./video";
