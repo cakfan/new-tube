@@ -11,7 +11,13 @@ import { extractName } from "@/modules/auth/name";
 import Link from "next/link";
 import { useState } from "react";
 import { signOut } from "@/lib/auth-client";
-import { LayoutDashboard, LogOut, ShoppingBag, UserRound } from "lucide-react";
+import {
+  ClapperboardIcon,
+  LayoutDashboard,
+  LogOut,
+  ShoppingBag,
+  UserRound,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -28,9 +34,14 @@ export const UserMenu = ({ me }: UserMenuProps) => {
     const isAdmin = me.role === "admin";
     const menus = [
       {
-        title: "Profil",
+        title: "Profile",
         href: `/${me.username}`,
         icon: <UserRound size={16} />,
+      },
+      {
+        title: "Studio",
+        href: "/studio",
+        icon: <ClapperboardIcon size={16} />,
       },
     ];
 
